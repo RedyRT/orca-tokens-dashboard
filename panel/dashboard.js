@@ -1,5 +1,6 @@
 import { color, donut, element, timeChart } from './charts.js'
 import { locale } from './locale.js'
+import { mountQuota } from './quota.js'
 
 const host = globalThis.orca
 const $ = id => document.getElementById(id)
@@ -9,6 +10,7 @@ const plotState = new Map()
 let snapshot, deadline, inFlight = false, pending = false, force = false, failed = false, closed = false
 let l = locale('en')
 let dragging = null, deferred = null
+let quota
 
 function endDrag(event) {
   if (dragging === null || (event.pointerId != null && event.pointerId !== dragging)) return
@@ -48,10 +50,12 @@ function filter(id, placeholder, values) {
 
 function render(data) {
   const { copy, integer, money, compact, full, percent } = l = locale(data.language)
+  const languageChanged = document.documentElement.lang !== data.language
   document.documentElement.lang = data.language
   for (const node of document.querySelectorAll('[data-copy]')) node.textContent = copy[node.dataset.copy]
   document.querySelector('h1').textContent = copy.title
   document.querySelector('.subtitle').textContent = copy.subtitle
+  if (languageChanged) quota?.render()
   $('periods').setAttribute('aria-label', copy.period)
   $('language').value = data.language
   filter('workspace', copy.allWorkspaces, data.filters.workspaces)
@@ -142,6 +146,7 @@ if (!host) {
   setStatus(l.copy.unavailable, true)
   $('refresh').disabled = true
 } else {
+  quota = mountQuota(host, $('quota'), () => l)
   const subscription = host.plugin.on('history.changed', () => void refresh())
   $('charts').addEventListener('pointerdown', event => {
     if (event.target.matches('input[type="range"]')) dragging = event.pointerId
@@ -149,7 +154,7 @@ if (!host) {
   window.addEventListener('pointerup', endDrag)
   window.addEventListener('pointercancel', endDrag)
   window.addEventListener('blur', endDrag)
-  $('refresh').addEventListener('click', () => void refresh(true))
+  $('refresh').addEventListener('click', () => { void refresh(true); void quota.refresh() })
   $('language').addEventListener('change', async event => {
     const select = event.currentTarget
     select.disabled = true

@@ -1,6 +1,7 @@
 import { homedir } from 'node:os'
 import { isAbsolute, join, resolve } from 'node:path'
 import { History } from './history.mjs'
+import { readQuota } from './quota.mjs'
 
 let history
 let subscription
@@ -31,6 +32,8 @@ export default function activate(orca) {
     update = job.then(() => {}, () => {})
     return job
   }
+
+  orca.panels.handle('quota.snapshot', () => readQuota())
 
   orca.panels.handle('history.snapshot', async (input, { signal }) => {
     const settings = await readSettings()

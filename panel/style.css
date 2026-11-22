@@ -46,6 +46,13 @@ select { width: 100%; text-overflow: ellipsis }
 .grid { display: grid; gap: 8px; margin-bottom: 8px; align-items: stretch }
 .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)) }
 .panel { background: var(--orca-card); color: var(--orca-card-foreground); border: 1px solid var(--orca-border); border-radius: 3px; min-width: 0; padding: 10px }
+.quota { margin-bottom: 12px }
+.quota h2 + p, .quota-account { margin-top: 4px }
+.quota-account + .quota-account { border-top: 1px solid var(--orca-border); margin-top: 8px; padding-top: 8px }
+.quota-window { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; margin-block: 4px }
+.quota-window meter { inline-size: min(9rem, 40%); block-size: 10px }
+.quota-window meter::-webkit-meter-bar { background: var(--orca-background); border: 1px solid var(--orca-border) }
+.quota-window meter::-webkit-meter-optimum-value { background: var(--orca-primary) }
 .kpi { display: grid; grid-template-rows: auto 1fr auto; gap: 6px; min-height: 112px }
 .kpi strong { align-self: center; text-align: center; font-size: clamp(19px, 5vw, 34px); font-weight: 600; line-height: 1.15; overflow-wrap: anywhere }
 .kpi p { text-align: center; font-size: 10px }

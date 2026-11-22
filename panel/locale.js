@@ -1,5 +1,11 @@
 const en = {
   title: 'Usage overview', subtitle: 'OMP & Pi · Local usage history', refresh: 'Refresh', language: 'Dashboard language',
+  quotaTitle: 'Codex usage left', quotaLoading: 'Checking Codex limits…', quotaEmpty: 'No Codex limits reported by OMP.',
+  quotaUnavailable: 'Codex limits unavailable. Check that OMP is installed and signed in, then refresh.',
+  quotaStale: 'Could not update Codex limits. Showing the last available values.',
+  quotaPartial: 'Could not check limits for every Codex account.',
+  quotaChecked: at => `Last checked: ${at}`, quotaAccount: n => `Account ${n}`, quotaRemaining: window => `Quota left · ${window}`,
+  quotaResets: time => `Resets in ${time}`, quotaResetDue: 'Reset due', quotaCredits: (n, times) => `Reset credits: ${n}${times ? ` · Expire: ${times}` : ''}`,
   period: 'Period', hour: '1 hour', day: '24 hours', week: '7 days', month: '30 days', workspace: 'Workspace', provider: 'Provider', model: 'Model',
   allWorkspaces: 'All workspaces', allProviders: 'All providers', allModels: 'All models',
   loading: 'Loading local usage…', active: 'Watching local journals', empty: 'No OMP/Pi session journals found',
@@ -23,6 +29,12 @@ const en = {
 }
 const ru = {
   title: 'Обзор использования', subtitle: 'OMP и Pi · Локальная история расхода', refresh: 'Обновить', language: 'Язык дашборда',
+  quotaTitle: 'Остаток лимита Codex', quotaLoading: 'Проверяем лимиты Codex…', quotaEmpty: 'OMP не вернул лимиты Codex.',
+  quotaUnavailable: 'Лимиты Codex недоступны. Проверьте, что OMP установлен и вход выполнен, затем обновите данные.',
+  quotaStale: 'Не удалось обновить лимиты Codex. Показаны последние доступные данные.',
+  quotaPartial: 'Не удалось проверить лимиты всех аккаунтов Codex.',
+  quotaChecked: at => `Последняя проверка: ${at}`, quotaAccount: n => `Аккаунт ${n}`, quotaRemaining: window => `Остаток лимита · ${window}`,
+  quotaResets: time => `Сброс через ${time}`, quotaResetDue: 'Срок сброса наступил', quotaCredits: (n, times) => `Досрочные сбросы: ${n}${times ? ` · Истекают: ${times}` : ''}`,
   period: 'Период', hour: '1 час', day: '24 часа', week: '7 дней', month: '30 дней', workspace: 'Пространство', provider: 'Провайдер', model: 'Модель',
   allWorkspaces: 'Все пространства', allProviders: 'Все провайдеры', allModels: 'Все модели',
   loading: 'Загрузка локальной истории…', active: 'Наблюдение за локальными журналами', empty: 'Журналы сессий OMP/Pi не найдены',

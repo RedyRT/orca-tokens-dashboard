@@ -13,6 +13,11 @@
       <div><h1>Usage overview</h1><p class="subtitle">OMP &amp; Pi · Local usage history</p></div>
       <div class="actions"><label class="language"><span data-copy="language">Dashboard language</span><select id="language" disabled><option value="en">English</option><option value="ru">Русский</option></select></label><button id="refresh" type="button" data-copy="refresh">Refresh</button></div>
     </header>
+    <section id="quota" class="panel quota" aria-labelledby="quota-title" hidden>
+      <h2 id="quota-title" data-copy="quotaTitle">Codex usage left</h2>
+      <p class="muted" role="status">Checking Codex limits…</p>
+      <div class="quota-accounts"></div>
+    </section>
     <div class="toolbar">
       <div id="periods" role="group" aria-label="Period">
         <button type="button" data-period="1h" data-copy="hour" aria-pressed="false">1 hour</button><button type="button" data-period="24h" data-copy="day" aria-pressed="true">24 hours</button><button type="button" data-period="7d" data-copy="week" aria-pressed="false">7 days</button><button type="button" data-period="30d" data-copy="month" aria-pressed="false">30 days</button>
