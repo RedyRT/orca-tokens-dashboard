@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tokens Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="dashboard.js"></script>
+</head>
+<body>
+  <main class="dashboard">
+    <header>
+      <div><h1>Usage overview</h1><p class="subtitle">OMP &amp; Pi · Local usage history</p></div>
+      <div class="actions"><label class="language"><span data-copy="language">Dashboard language</span><select id="language" disabled><option value="en">English</option><option value="ru">Русский</option></select></label><button id="refresh" type="button" data-copy="refresh">Refresh</button></div>
+    </header>
+    <div class="toolbar">
+      <div id="periods" role="group" aria-label="Period">
+        <button type="button" data-period="1h" data-copy="hour" aria-pressed="false">1 hour</button><button type="button" data-period="24h" data-copy="day" aria-pressed="true">24 hours</button><button type="button" data-period="7d" data-copy="week" aria-pressed="false">7 days</button><button type="button" data-period="30d" data-copy="month" aria-pressed="false">30 days</button>
+      </div>
+      <label><span data-copy="workspace">Workspace</span><select id="workspace" disabled></select></label>
+      <label><span data-copy="provider">Provider</span><select id="provider" disabled></select></label>
+      <label><span data-copy="model">Model</span><select id="model" disabled></select></label>
+    </div>
+    <p id="status" class="status" role="status">Loading local usage…</p>
+    <p id="range" class="range"></p>
+    <div id="charts"></div>
+    <details id="coverage" class="coverage" hidden><summary data-copy="coverage">Measurement coverage</summary><ul></ul></details>
+  </main>
+</body>
+</html>
